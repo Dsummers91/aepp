@@ -7,14 +7,13 @@ pragma solidity ^0.4.18;
 
 import './VacationCore.sol';
 
-contract VacationLibrary is VacationCore {
+contract Vacation is VacationCore {
 
     modifier onlyAgents {
         _;
     }
 
     function agentSubmitVacation() public returns (bool success) {
-        finished = true;
     }
 
     function() {

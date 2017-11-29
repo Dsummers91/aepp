@@ -1,33 +1,33 @@
 /**
- * @dev Vacation where each participant can chip in variable amounts
+ * @dev Vacation where each participant has to chip in equal amounts
  */
- 
- pragma solidity ^0.4.18;
+
+pragma solidity ^0.4.18;
 
 import './VacationCore.sol';
 
 contract VacationWithEqualPayments is VacationCore {
 
     /*
-     * @param equalPayment Determines if each person has to pay same amount
      * @param priceInEther Price or Min. Price each person pays in equalPayment is true 
      * @dateBegin date the trip will begin
      * @dateEnd   date the trip will end
      * @whitelist users who you allow to participate, leave empty if open to the world
      */
 
-    function VacationWithEqualPayments(address _vacationLibrary, uint _priceInWei, uint _registrationCloseDate, uint dateBegin, uint dateEnd, address whitelist)  public {
-        vacationLibrary = _vacationLibrary;
+    function VacationWithEqualPayments(uint256 _priceInWei, uint dateBegin, uint dateEnd, address[] whitelist)  public {
+        priceInWei = _priceInWei;
     }
 
-    function buyin() public payable {
+    function buyin() payable public returns (bool success) {
         require(msg.value == priceInWei);
         participants.push(msg.sender);
+        return true;
     }
-
-    function donate() public payable {}
     
+    function donate() payable  public {}
+
     function() {
-        require(vacationLibrary.delegatecall(msg.data));
+        throw;
     }
 }

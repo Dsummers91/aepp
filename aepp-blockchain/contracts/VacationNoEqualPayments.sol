@@ -16,8 +16,8 @@ contract VacationNoEqualPayments is VacationCore {
      * @whitelist users who you allow to participate, leave empty if open to the world
      */
 
-    function VacationNoEqualPayments(address _vacationLibrary, uint _priceInWei, uint dateBegin, uint dateEnd, address whitelist)  public {
-        vacationLibrary = _vacationLibrary;
+    function VacationNoEqualPayments(uint256 _priceInWei, uint dateBegin, uint dateEnd, address[] whitelist)  public {
+        
     }
 
     function buyin() payable public {
@@ -28,6 +28,6 @@ contract VacationNoEqualPayments is VacationCore {
     function donate() payable  public {}
 
     function() {
-        require(vacationLibrary.delegatecall(msg.data));
+        throw;
     }
 }
