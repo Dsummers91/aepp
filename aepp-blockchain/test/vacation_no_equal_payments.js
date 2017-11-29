@@ -4,11 +4,18 @@ contract('VacationNoEqualPayments', function(accounts) {
   let vacationNoEqualPayments;
 
   beforeEach(async () => {
-    console.log('df');
     vacationNoEqualPayments = await VacationNoEqualPayments.new();
   })
 
-  it("should assert true", async () => {
-    assert.isTrue(true);
+  it('should be able to register participants', () => {
+    
+  });
+
+  it('should be able to donate', () => {
+    
+  });
+
+  it('should be able to remove yourself', () => {
+    
   });
 });

@@ -9,4 +9,14 @@ contract('VacationFactory', async (accounts) => {
     let factoryLibraryAddress = await vacation_factory.vacationLibrary();
     assert.equal(factoryLibraryAddress, vacation_library.address);
   });
+
+  it('should be able to create a VacationWithNoEqualPauyments contract', () => {
+    
+  });
+
+
+  it('should be able to create a VacationWithEqualPauyments contract', () => {
+    
+  });
+
 });
