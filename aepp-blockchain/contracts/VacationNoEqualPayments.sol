@@ -1,12 +1,14 @@
+/**
+ * @dev Vacation where each participant has to chip in equal amounts
+ */
+
 pragma solidity ^0.4.18;
 
-contract VacationNoEqualPayments {
-    address public vacationLibrary;
-    uint public priceInWei;
-    address[] public participants;
+import './VacationCore.sol';
+
+contract VacationNoEqualPayments is VacationCore {
 
     /*
-     * @param equalPayment Determines if each person has to pay same amount
      * @param priceInEther Price or Min. Price each person pays in equalPayment is true 
      * @dateBegin date the trip will begin
      * @dateEnd   date the trip will end

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as IdManagerProviderWrapper from '@aeternity/id-manager-provider'
-
+import * as IdManagerProviderWrapper from '@aeternity/id-manager-provider';
+import * as vacationFactoryArtifacts from '../../../aepp-blockchain/build/contracts/VacationFactory.json';
+import * as vacationArtifacts from '../../../aepp-blockchain/build/contracts/VacationBasic.json';
 
 declare var Web3: any;
 const abi = [{"constant":true,"inputs":[],"name":"hello","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"}];
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
       rpcUrl: 'http://localhost:9545',
       skipSecurity: true
     })
-    idManager.checkIdManager().then( (idManagerPresent) => {
+    idManager.checkIdManager().then( async (idManagerPresent) => {
         if (idManagerPresent ) {
             web3 = new Web3(idManager.web3.currentProvider)
         } else if (typeof web3 !== 'undefined') { // Metamask
@@ -34,11 +35,16 @@ export class AppComponent implements OnInit {
  
         if (web3) {
           this.web3 = web3;
-          console.log(this.web3.eth.contract(abi).at("0x345ca3e014aaf5dca488057592ee47305d9b3e10"));
-          this.web3.eth.contract(abi).at("0x345ca3e014aaf5dca488057592ee47305d9b3e10")
-            .hello((err, res) => {
-              console.log(err, res);
-            })  
+          web3.version.getNetwork((err,res) => {
+            let factoryArtifact: any = vacationFactoryArtifacts;
+            let vacationArtifact: any = vacationArtifacts;
+
+            let vacationContract = factoryArtifact.networks[res];
+            this.web3.eth.contract(factoryArtifact.abi).at(vacationContract.address)
+              .vacationLibrary((err, res) => {
+                console.log(err, res);
+              })  
+          })
         } else {
             // Not Ready
         }

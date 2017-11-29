@@ -1,10 +1,12 @@
-pragma solidity ^0.4.18;
+/**
+ * @dev Vacation where each participant can chip in variable amounts
+ */
+ 
+ pragma solidity ^0.4.18;
 
-contract VacationWithEqualPayments {
-    address public vacationLibrary;
-    uint public priceInWei;
-    address[] public participants;
-    uint public registrationCloseDate;
+import './VacationCore.sol';
+
+contract VacationWithEqualPayments is VacationCore {
 
     /*
      * @param equalPayment Determines if each person has to pay same amount

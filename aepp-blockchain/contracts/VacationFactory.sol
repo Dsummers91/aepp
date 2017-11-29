@@ -1,3 +1,7 @@
+/**
+ * @dev Deploys each Vacation contract
+ */
+
 pragma solidity ^0.4.18;
 
 import './VacationWithEqualPayments.sol';
