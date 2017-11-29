@@ -4,7 +4,7 @@ var TravelAgentRegistry = artifacts.require("./TravelAgentRegistry.sol");
 
 module.exports = async (deployer) => {
   deployer.deploy(VacationLibrary);
+  deployer.deploy(TravelAgentRegistry);
   let vacationLibrary = await VacationLibrary.deployed();
   deployer.deploy(VacationFactory, vacationLibrary.address);
-  deployer.deploy(TravelAgentRegistry);
 };

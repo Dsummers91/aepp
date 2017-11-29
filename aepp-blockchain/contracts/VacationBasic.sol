@@ -10,5 +10,5 @@ contract VacationBasic is VacationCore {
     function buyin() payable public {}
     function donate() payable  public {}
     function quit() public {}
-    function agentSubmitVacation() (bool success) {}
+    function agentSubmitVacation() returns (bool success) {}
 }

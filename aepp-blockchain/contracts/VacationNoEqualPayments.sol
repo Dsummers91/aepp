@@ -7,6 +7,7 @@ pragma solidity ^0.4.18;
 import './VacationCore.sol';
 
 contract VacationNoEqualPayments is VacationCore {
+    bool public finished;
 
     /*
      * @param priceInEther Price or Min. Price each person pays in equalPayment is true 
