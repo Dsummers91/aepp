@@ -4,8 +4,7 @@
 
 pragma solidity ^0.4.18;
 
-import './VacationWithEqualPayments.sol';
-import './VacationNoEqualPayments.sol';
+import './Vacation.sol';
 
 contract VacationFactory {
     address public vacationLibrary;
