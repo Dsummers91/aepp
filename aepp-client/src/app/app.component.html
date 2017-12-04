@@ -1,22 +1,19 @@
 <div class="btn-group center centered" style="float:right" data-toggle="buttons">
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" (click)="tab = ''">Home
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option1" autocomplete="off" [routerLink]="['/']">Home
   </label>
   <label class="btn btn-primary">
-    <input type="radio" name="options" id="option1" autocomplete="off" (click)="tab = 'create'">New Journey
+    <input type="radio" name="options" id="option1" autocomplete="off" [routerLink]="['/create']">New
   </label>
   <label class="btn btn-primary">
-    <input type="radio" name="options" id="option2" autocomplete="off" (click)="tab = 'join'">Join Journey
+    <input type="radio" name="options" id="option2" autocomplete="off" [routerLink]="['/list']">List
   </label>
   <label class="btn btn-primary">
-    <input type="radio" name="options" id="option3" autocomplete="off" (click)="tab = 'agent'">Agent
+    <input type="radio" name="options" id="option3" autocomplete="off" [routerLink]="['/agent']">Agent
   </label>
 </div>
 <div class="clearfix"></div>
 
-<div class="container-full">
-  <app-create-vacation [factory]="factoryContract" *ngIf="tab == 'create'"></app-create-vacation>
-  <app-join-vacation *ngIf="tab == 'join'"></app-join-vacation>
-  <app-register-agent *ngIf="tab == 'register'"></app-register-agent>
-  <app-agent *ngIf="tab == 'agent'"></app-agent>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

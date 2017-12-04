@@ -8,7 +8,7 @@ import './Vacation.sol';
 
 contract VacationFactory {
     address[] vacations;
-    address agentRegistry;
+    address public agentRegistry;
 
     function VacationFactory(address _agentRegistry)  public {
         agentRegistry = _agentRegistry;
