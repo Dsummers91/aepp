@@ -1,0 +1,33 @@
+<form class="example-form">
+  <div class="example-full-width  center">
+    <label class="center">Entry Fee (in ether)
+    <input [(ngModel)]="form.entryFee" type="number" name="entry" class="form-control" value=''>
+    </label>
+  </div>
+  <div class="example-full-width  center">
+    <label class="center">Max amount of participants
+    <input [(ngModel)]="form.maxParticipants" name="max" type="number" class="form-control" value=''>
+    </label>
+  </div>
+  <div class="clearfix"></div>
+  <div class="example-full-width  center">
+      <label class="center">Registration Deadline
+      <input  [(ngModel)]="form.deadline" name="deadline" class="form-control" type="date">
+    </label>
+  </div>
+  <div class="clearfix"></div>
+  <div class="example-full-width  center">
+      <label class="center">Vacation Start Date
+      <input  [(ngModel)]="form.dateBegin" name="datebegin" class="form-control" type="date">
+    </label>
+  </div>
+  <div class="clearfix"></div>
+  <div class="example-full-width  center">
+      <label class="center">Vacation End Date
+      <input  [(ngModel)]="form.dateEnd" name="dateend" class="form-control" type="date">
+    </label>
+  </div>
+  <div class="clearfix"></div>
+  <br>
+  <button class="btn btn-primary form-control" (click)="createVacation(form)">Create Vacation</button>
+</form>
