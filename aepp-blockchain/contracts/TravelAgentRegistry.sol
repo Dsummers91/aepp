@@ -4,18 +4,27 @@
  
  pragma solidity ^0.4.18;
 
+
+import './tokens/Token.sol';
+
 contract TravelAgentRegistry {
     mapping(address => bool) registered;
+    address public recipient;
+    uint256 constant public FEE = .01 * 10 ** 18;
+    Token public token;
 
-    function TravelAgentRegistry() {
+    function TravelAgentRegistry(address _tokenAddress) {
+        token = Token(_tokenAddress);
     }
 
     function isRegistered(address _user) public view returns (bool) {
         return registered[_user];
     }
 
-    function register() public {
+    function register() public returns(bool) {
+        require(token.transferFrom(msg.sender, recipient, FEE));
         registered[msg.sender] = true;
+        return true;
     }
 
     function isAgent() public view returns (bool) {
