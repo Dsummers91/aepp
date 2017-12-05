@@ -1,3 +1,34 @@
-<p>
-  view works!
+<ul>
+  <li>Entry Fee: {{entryFee}} Ether</li>
+  <li>Deadline: {{deadline}}</li>
+  <li>Vacation Start: {{startDate}}</li>
+  <li>Vacation End: {{endDate}}</li>
+  <li>max Participants: {{maxParticipants}}</li>
+  <li>itinerary: {{itinerary || 'None Yet'}}</li>
+</ul>
+<hr>
+<h4>Current Participants</h4>
+<ol>
+  <li *ngFor="let participant of participants">{{participant}}</li>
+</ol>
+<hr>
+
+<button (click)="join()" class="btn btn-primary center text-center">Join</button>
+
+
+<p class="text-center text-info">
+  if information doesnt load correctly onpage load, click refresh xd
 </p>
+<button (click)="getData()" class="btn btn-default center text-center">Refresh</button>
+<br>
+<hr>
+
+<h4 class="text-center">Agent Methods</h4>
+<p class="text-center" *ngIf="!isAgent">Sorry you aren't an agent! Go to Agent tab to become one!</p>
+
+<div *ngIf="isAgent" class="example-full-width  center">
+    <label class="center">itinerary URL
+    <input  [(ngModel)]="itinerary" name="itinerary" class="form-control" type="text">
+  </label>
+</div>
+<button  *ngIf="isAgent" class="btn btn-primary form-control" (click)="submitItinerary(itinerary)">Submit Itinerary</button>

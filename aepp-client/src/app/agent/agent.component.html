@@ -1,3 +1,6 @@
-<p>
-  agent works!
-</p>
+<h2>You are currently <span *ngIf="isAgent == false" class="text-danger">not</span>  an agent<span *ngIf="isAgent">!!</span></h2>
+<br>
+<br>
+<div class="btn btn-primary center form-control" (click)="register()">Become an Agent</div>
+<br>
+<p>Agent are the ones who plan the trips and give the participants their itinerary</p>

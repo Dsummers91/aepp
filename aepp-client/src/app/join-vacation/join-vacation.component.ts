@@ -20,7 +20,7 @@ export class JoinVacationComponent implements OnInit {
         .then(() => {
           this.factory = this.contractService.factoryContract;
           this.factory.getVacationLength((err, res) => {
-            for(let i=+res; i > 0; i--) {
+            for(let i=+res-1; i >= 0; i--) {
               this.factory.getVacationByIndex(i, (err,res) => {
                 this.vacations.push(res);
               })

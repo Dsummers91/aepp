@@ -1,3 +1,6 @@
 <ul class="list-group">
-  <li *ngFor="let vacation of vacations" [routerLink]="['/view/' + vacation]" class="list-group-item">{{vacation}}</li>
+  <ng-container *ngFor="let vacation of vacations">
+      <li  *ngIf="vacation" [routerLink]="['/view/' + vacation]" class="list-group-item">{{vacation}}</li>
+  </ng-container>
+  
 </ul>

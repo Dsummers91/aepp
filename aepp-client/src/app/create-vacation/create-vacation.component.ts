@@ -13,6 +13,7 @@ export class CreateVacationComponent implements OnInit {
   address: string;
   txHash: string;
   submitted: boolean;
+  isAgent: boolean;
 
   constructor(
     @Inject(ContractService) public contractService
@@ -28,10 +29,9 @@ export class CreateVacationComponent implements OnInit {
   }
 
 
-  async createVacation(form: any) {
-    form = Object.apply({}, form);
+  async createVacation() {
+    let form = Object.assign({}, this.form);
     form.entryFee = form.entryFee * 1e18;
-    console.log(form.deadline);
     form.deadline = Math.floor(new Date(form.deadline) as any / 1000);
     form.dateBegin = Math.floor(new Date(form.dateBegin) as any / 1000);
     form.dateEnd = Math.floor(new Date(form.dateEnd) as any / 1000);

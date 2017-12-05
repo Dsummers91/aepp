@@ -100,4 +100,7 @@ contract VacationCore {
         scheduled = true;
     }
 
+    function() {
+        throw;
+    }
 }

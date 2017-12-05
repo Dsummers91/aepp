@@ -28,7 +28,4 @@ contract Vacation is VacationCore {
     
     function donate() payable  public {}
 
-    function() {
-        throw;
-    }
 }

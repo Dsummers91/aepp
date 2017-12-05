@@ -17,4 +17,8 @@ contract TravelAgentRegistry {
     function register() public {
         registered[msg.sender] = true;
     }
+
+    function isAgent() public view returns (bool) {
+        return registered[msg.sender];
+    }
 }
