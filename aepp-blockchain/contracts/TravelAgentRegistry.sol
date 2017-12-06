@@ -22,7 +22,7 @@ contract TravelAgentRegistry {
     }
 
     function register() public returns(bool) {
-        require(token.transferFrom(msg.sender, recipient, FEE));
+        // require(token.transferFrom(msg.sender, recipient, FEE));
         registered[msg.sender] = true;
         return true;
     }

@@ -20,12 +20,10 @@ export class CreateVacationComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    if (!this.factory) {
       this.contractService.initWeb3()
         .then(() => {
           this.factory = this.contractService.factoryContract;
         });
-      }
   }
 
 
