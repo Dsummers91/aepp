@@ -100,7 +100,7 @@ contract VacationCore {
         scheduled = true;
     }
 
-    function() {
+    function() payable public {
         throw;
     }
 }

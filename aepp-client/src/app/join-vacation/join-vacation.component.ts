@@ -16,17 +16,25 @@ export class JoinVacationComponent implements OnInit {
   ngOnInit() {
     this.vacations = [];
     if(!this.factory) {
-      this.contractService.initWeb3()
-        .then(() => {
-          this.factory = this.contractService.factoryContract;
-          this.factory.getVacationLength((err, res) => {
-            for(let i=+res-1; i >= 0; i--) {
-              this.factory.getVacationByIndex(i, (err,res) => {
-                this.vacations.push(res);
-              })
-            }
-          })
-        })
+      this.getData();
     }
+    setTimeout(() => {
+      this.getData();
+    }, 300);
+  }
+
+  getData() {
+    this.contractService.initWeb3()
+    .then(() => {
+      this.factory = this.contractService.factoryContract;
+      this.factory.getVacationLength((err, res) => {
+        this.vacations = [];
+        for(let i=+res-1; i >= 0; i--) {
+          this.factory.getVacationByIndex(i, (err,res) => {
+            this.vacations.push(res);
+          })
+        }
+      })
+    })
   }
 }
