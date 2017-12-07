@@ -1,7 +1,5 @@
 var VacationFactory = artifacts.require("./VacationFactory.sol");
+module.exports = async (deployer, network, accounts) => {
 
-module.exports = async (deployer) => {
-    setTimeout(() => {
-
-    }, 4000)
-};
+    VacationFactory.new('');
+}

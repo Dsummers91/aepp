@@ -15,12 +15,10 @@ export class JoinVacationComponent implements OnInit {
 
   ngOnInit() {
     this.vacations = [];
-    if(!this.factory) {
-      this.getData();
-    }
+    this.getData();
     setTimeout(() => {
-      this.getData();
-    }, 300);
+      this.getData()
+    }, 1000)
   }
 
   getData() {
