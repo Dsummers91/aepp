@@ -1,6 +1,17 @@
 <h2>You are currently <span *ngIf="isAgent == false" class="text-danger">not</span>  an agent<span *ngIf="isAgent">!!</span></h2>
 <br>
+<p  class="text-center">Agent are the ones who plan the trips and give the participants their itinerary</p>
 <br>
+<p class="text-center">In order to become an agent you must send 1 Aeternity token as stake. This is done in two steps:</p>
+<br>
+<h4 class="text-info">1. Approve the Agent contract to take one token from your address</h4>
+
+<div class="btn btn-primary center form-control" (click)="approve()">Approve</div>
+
+<h4 class="text-info">2. Register as an agent which pays one token</h4>
+
 <div class="btn btn-primary center form-control" (click)="register()">Become an Agent</div>
 <br>
-<p>Agent are the ones who plan the trips and give the participants their itinerary</p>
+<br><br><br>
+
+<h3>If you need tokens checkout <a href="https://www.aepps.com/Get-started-with-AE.html">this link</a> for an aeternity faucet</h3>

@@ -8,6 +8,7 @@ import { ContractService } from '../contract.service';
 })
 export class AgentComponent implements OnInit {
   agent: any;
+  token: any;
   isAgent: boolean;
 
   constructor(
@@ -23,15 +24,22 @@ export class AgentComponent implements OnInit {
       }, 1000)
   }
 
-    register() {
-      this.agent.register((err, res) => {
-        console.log(res);
-      })
-    }
+  approve() {
+    this.token.approve(this.agent.address, 1e18, (err, res) => {
+      console.log(res);
+    })
+  }
+  
+  register() {
+    this.agent.register((err, res) => {
+      console.log(res);
+    })
+  }
 
     populateData() {
       this.contractService.initWeb3()
       .then(() => {
+        this.token = this.contractService.tokenContract;
         this.agent = this.contractService.agentContract;
         this.agent.isAgent((err,res) => {
           this.isAgent = res;

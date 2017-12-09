@@ -1,6 +1,21 @@
+<h2 class="text-center">Vacations</h2>
 <ul class="list-group">
   <ng-container *ngFor="let vacation of vacations">
-      <li  *ngIf="vacation" [routerLink]="['/view/' + vacation]" class="list-group-item">{{vacation}}</li>
+    <li *ngIf="vacation" [routerLink]="['/view/' + vacation]" class="list-group-item">{{vacation}}</li>
   </ng-container>
-  
+</ul>
+
+<h2 class="text-center">Loner</h2>
+<ul class="list-group">
+  <ng-container *ngFor="let loner of loners">
+    <li *ngIf="loner" [routerLink]="['/view/' + loner]" class="list-group-item">{{loner}}</li>
+  </ng-container>
+
+</ul>
+
+<h2 class="text-center">Date Nights</h2>
+<ul class="list-group">
+  <ng-container *ngFor="let datenight of datenights">
+    <li *ngIf="datenight" [routerLink]="['/view/' + datenight]" class="list-group-item">{{datenight}}</li>
+  </ng-container>
 </ul>

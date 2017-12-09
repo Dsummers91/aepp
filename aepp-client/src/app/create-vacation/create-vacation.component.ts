@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 
 import { ContractService } from '../contract.service';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-create-vacation',
@@ -16,14 +17,15 @@ export class CreateVacationComponent implements OnInit {
   isAgent: boolean;
 
   constructor(
-    @Inject(ContractService) public contractService
+    @Inject(ContractService) public contractService,
+    private route: ActivatedRoute
   ) { }
 
   async ngOnInit() {
-      this.contractService.initWeb3()
-        .then(() => {
-          this.factory = this.contractService.factoryContract;
-        });
+    this.contractService.initWeb3()
+      .then(() => {
+        this.factory = this.contractService.factoryContract;
+      });
   }
 
 
@@ -35,12 +37,18 @@ export class CreateVacationComponent implements OnInit {
     form.dateEnd = Math.floor(new Date(form.dateEnd) as any / 1000);
     form.maxParticipants = 2;
     form.whitelist = [];
-    this.factory.createVacation.call(form.entryFee, form.deadline, form.dateBegin, form.dateEnd, form.whitelist, form.maxParticipants, (err, address) => {
-      this.factory.createVacation(form.entryFee, form.deadline, form.dateBegin, form.dateEnd, form.whitelist, form.maxParticipants, (err, txHash) => {
-        this.address = address;
-        this.txHash = txHash;
-        this.submitted = true;
+    this.route.params.subscribe(params => {
+      this.factory['create' + this.cap(params.type)].call(form.entryFee, form.deadline, form.dateBegin, form.dateEnd, form.whitelist, form.maxParticipants, (err, address) => {
+        this.factory['create' + this.cap(params.type)](form.entryFee, form.deadline, form.dateBegin, form.dateEnd, form.whitelist, form.maxParticipants, (err, txHash) => {
+          this.address = address;
+          this.txHash = txHash;
+          this.submitted = true;
+        });
       });
     });
+  }
+
+  private cap(string): string {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

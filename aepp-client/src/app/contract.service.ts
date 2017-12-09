@@ -3,6 +3,7 @@ import * as IdManagerProviderWrapper from '@aeternity/id-manager-provider';
 import * as vacationFactoryArtifacts from '../../../aepp-blockchain/build/contracts/VacationFactory.json';
 import * as vacationArtifacts from '../../../aepp-blockchain/build/contracts/Vacation.json';
 import * as agentArtifacts from '../../../aepp-blockchain/build/contracts/TravelAgentRegistry.json';
+import * as tokenArtifacts from '../../../aepp-blockchain/build/contracts/TestToken.json';
 
 
 declare var Web3: any;
@@ -14,9 +15,11 @@ export class ContractService {
   vacationContract: any;
   factoryContract: any;
   agentContract: any;
+  tokenContract: any;
   vacationArtifact: any;
   factoryArtifact: any;
   agentArtifact: any;
+  tokenArtifact: any;
   constructor() {}
 
   initWeb3(): Promise<boolean> {
@@ -44,10 +47,11 @@ export class ContractService {
             this.factoryArtifact = vacationFactoryArtifacts;
             this.vacationArtifact = vacationArtifacts;
             this.agentArtifact = agentArtifacts;
-            console.log(this.factoryArtifact.networks);
-            this.factoryContract = web3.eth.contract(vacationFactoryArtifacts['abi']).at(this.factoryArtifact.networks[res].address);
+            this.tokenArtifact = tokenArtifacts;
+            // this.factoryContract = web3.eth.contract(vacationFactoryArtifacts['abi']).at(this.factoryArtifact.networks[res].address);
             this.agentContract = web3.eth.contract(agentArtifacts['abi']).at(this.agentArtifact.networks[res].address);
-            this.vacationContract = web3.eth.contract(vacationArtifacts['abi']);
+            this.tokenContract = web3.eth.contract(tokenArtifacts['abi']).at(this.tokenArtifact.networks[res].address);
+            // this.vacationContract = web3.eth.contract(vacationArtifacts['abi']);
             return resolve(true);
           })
         } else {

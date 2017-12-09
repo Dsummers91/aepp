@@ -4,7 +4,7 @@ var TestToken = artifacts.require("./tokens/TestToken.sol");
 var fs = require('fs');
 var path = require('path');
 
-module.exports = async function (deployer) {
+module.exports = function (deployer) {
   deployer.deploy(TestToken, "TST", "TST", 18)
     .then(function() {
       return deployer.deploy(TravelAgentRegistry, TestToken.address);

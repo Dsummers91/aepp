@@ -20,7 +20,7 @@ export const routes: Routes = [
   { path: 'list', component: JoinVacationComponent },
   { path: 'view/:address', component: ViewComponent },
   { path: 'create', component: CreateComponent },
-  { path: 'create/vacation', component: CreateVacationComponent },
+  { path: 'create/:type', component: CreateVacationComponent },
   { path: 'agent', component: AgentComponent },
 ];
 
