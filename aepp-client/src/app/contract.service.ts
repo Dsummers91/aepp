@@ -43,15 +43,14 @@ export class ContractService {
         if (web3) {
           this.web3 = web3;
           web3.version.getNetwork((err, res) => {
-            console.log(res);
             this.factoryArtifact = vacationFactoryArtifacts;
             this.vacationArtifact = vacationArtifacts;
             this.agentArtifact = agentArtifacts;
             this.tokenArtifact = tokenArtifacts;
-            // this.factoryContract = web3.eth.contract(vacationFactoryArtifacts['abi']).at(this.factoryArtifact.networks[res].address);
+            this.factoryContract = web3.eth.contract(vacationFactoryArtifacts['abi']).at(this.factoryArtifact.networks[res].address);
             this.agentContract = web3.eth.contract(agentArtifacts['abi']).at(this.agentArtifact.networks[res].address);
             this.tokenContract = web3.eth.contract(tokenArtifacts['abi']).at(this.tokenArtifact.networks[res].address);
-            // this.vacationContract = web3.eth.contract(vacationArtifacts['abi']);
+            this.vacationContract = web3.eth.contract(vacationArtifacts['abi']);
             return resolve(true);
           })
         } else {
