@@ -1,10 +1,12 @@
 var Vacation = artifacts.require("../contracts/Vacation.sol");
 var TravelAgentRegistry = artifacts.require("../contracts/TravelAgentRegistry.sol");
+var TestToken = artifacts.require("../contracts/TestToken.sol");
 
 contract('Vacation', async (accounts) => {
   let vacation;
   let registry;
-
+  let token;
+  
   beforeEach(async () => {
     let entryFee = 1e18;
     let deadline = Math.floor(new Date("12/15/2017") /1000);
@@ -12,7 +14,8 @@ contract('Vacation', async (accounts) => {
     let dateEnd = Math.floor(new Date("12/28/2017") /1000);
     maxParticipants = 4;
     let whitelist = [];
-    registry = await TravelAgentRegistry.new();
+    token = await TestToken.deployed()
+    registry = await TravelAgentRegistry.new(token.address);
     vacation = await Vacation.new(entryFee, deadline, dateBegin, dateEnd, whitelist, maxParticipants, registry.address, { from: accounts[0] });
   })
 
@@ -89,6 +92,7 @@ contract('Vacation', async (accounts) => {
     await vacation.buyin({ from: accounts[1], value: 1e18 });
     await vacation.buyin({ from: accounts[2], value: 1e18 });
     await vacation.buyin({ from: accounts[3], value: 1e18 });
+    await token.approve(registry.address, 1e18);
     await registry.register();
     let balance = await web3.eth.getBalance(vacation.address);
     assert.equal(+balance, 4e18);

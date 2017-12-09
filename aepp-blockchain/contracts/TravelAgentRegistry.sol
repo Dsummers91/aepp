@@ -10,11 +10,12 @@ import './tokens/Token.sol';
 contract TravelAgentRegistry {
     mapping(address => bool) registered;
     address public recipient;
-    uint256 constant public FEE = .01 * 10 ** 18;
+    uint256 constant public FEE = 1 * 10 ** 18;
     Token public token;
 
     function TravelAgentRegistry(address _tokenAddress) {
         token = Token(_tokenAddress);
+        recipient = msg.sender;
     }
 
     function isRegistered(address _user) public view returns (bool) {
@@ -22,7 +23,7 @@ contract TravelAgentRegistry {
     }
 
     function register() public returns(bool) {
-        // require(token.transferFrom(msg.sender, recipient, FEE));
+        require(token.transferFrom(msg.sender, recipient, FEE));
         registered[msg.sender] = true;
         return true;
     }
